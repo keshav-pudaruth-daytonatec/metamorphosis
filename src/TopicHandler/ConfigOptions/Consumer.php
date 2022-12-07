@@ -9,7 +9,7 @@ class Consumer
     private $broker;
 
     /**
-     * @var AvroSchema
+     * @deprecated
      */
     private $avroSchema;
 
@@ -75,7 +75,7 @@ class Consumer
         ?int $partition = null,
         ?int $offset = null,
         string $consumerGroup = 'default',
-        ?AvroSchema $avroSchema = null,
+        $avroSchema = null,
         array $middlewares = [],
         int $timeout = 1000,
         bool $autoCommit = true,
@@ -121,7 +121,7 @@ class Consumer
         return $this->topicId;
     }
 
-    public function getAvroSchema(): ?AvroSchema
+    public function getAvroSchema()
     {
         return $this->avroSchema;
     }
@@ -165,10 +165,6 @@ class Consumer
             'commit_async' => $this->isCommitASync(),
             'offset_reset' => $this->getOffsetReset(),
         ];
-
-        if ($avroSchema = $this->getAvroSchema()) {
-            $data = array_merge($data, $avroSchema->toArray());
-        }
 
         return array_merge($this->broker->toArray(), $data);
     }

@@ -13,7 +13,7 @@ class ProducerFactory
         $params = self::convertConfigAttributes($topicData);
 
         $params['broker'] = BrokerFactory::make($brokerData);
-        $params['avroSchema'] = AvroSchemaFactory::make($avroSchemaData);
+        $params['avroSchema'] = null;
 
         return app(Producer::class, $params);
     }

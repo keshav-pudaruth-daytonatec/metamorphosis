@@ -9,11 +9,6 @@ class Producer
     private $broker;
 
     /**
-     * @var AvroSchema
-     */
-    private $avroSchema;
-
-    /**
      * The amount of attempts we will try to run the flush.
      * There's no magic number here, it depends on any factor
      * Try yourself a good number.
@@ -73,7 +68,7 @@ class Producer
         string $topicId,
         Broker $broker,
         ?int $partition = null,
-        ?AvroSchema $avroSchema = null,
+        $avroSchema = null,
         array $middlewares = [],
         int $timeout = 1000,
         bool $isAsync = true,
@@ -133,7 +128,7 @@ class Producer
         return $this->topicId;
     }
 
-    public function getAvroSchema(): ?AvroSchema
+    public function getAvroSchema()
     {
         return $this->avroSchema;
     }
@@ -150,10 +145,6 @@ class Producer
             'flush_attempts' => $this->getFlushAttempts(),
             'middlewares' => $this->getMiddlewares(),
         ];
-
-        if ($avroSchema = $this->getAvroSchema()) {
-            $data = array_merge($data, $avroSchema->toArray());
-        }
 
         return array_merge($this->broker->toArray(), $data);
     }

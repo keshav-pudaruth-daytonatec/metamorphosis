@@ -13,8 +13,7 @@
         "illuminate/support": "^5.5 || ^6.0 || ^7.0 || ^8.0",
         "illuminate/console": "^5.5 || ^6.0 || ^7.0 || ^8.0",
         "illuminate/config": "^5.5 || ^6.0 || ^7.0 || ^8.0",
-        "php": ">=7.1",
-        "wikimedia/avro": "^1.7"
+        "php": ">=7.1"
     },
     "require-dev": {
         "leroy-merlin-br/coding-standard": "^1.0.1",
@@ -58,5 +57,11 @@
             "@composer install",
             "vendor/bin/grumphp git:init"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": false,
+            "phpro/grumphp": false
+        }
     }
 }

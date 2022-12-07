@@ -13,7 +13,7 @@ class ConsumerFactory
         $params = self::getConsumerGroupConfig($topicData);
 
         $params['broker'] = BrokerFactory::make($brokerData);
-        $params['avroSchema'] = AvroSchemaFactory::make($avroSchemaData);
+        $params['avroSchema'] = null;
 
         return app(Consumer::class, $params);
     }
